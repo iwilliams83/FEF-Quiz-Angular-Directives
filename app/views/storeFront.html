@@ -1,0 +1,25 @@
+
+<h1 id="storeHeading">{{legostore.name}}</h1>
+<p id="brickColors">We currently have {{legostore.brickColors.length}} colors.</p>
+
+
+<ul id="colorList">
+  <li id="color-{{color}}" class="row" ng-repeat="(color, details) in legostore.bricks">
+    {{color}}
+    <ul>
+      <li class="brick-{{size}}" ng-class="{'low-stock': info.quantity < 10}"
+                     ng-repeat="(size, info) in details">
+        <b><p class="size">Size: {{size}}</p></b>
+        <p class="quantity">
+          Quantity: {{info.quantity}}
+        </p>
+        <p class="price">Price: ${{info.price}}</p>
+        <p ng-if="info.quantity < 5" class="coming-soon">More on the way!</p>
+
+        <button class="buyButton" ng-click="legostore.buy(color, size)">Buy</button>
+        <button class="returnButton" ng-click="legostore.return(color, size)">Return</button>
+      </li>
+    </ul>
+  </li>
+
+</ul>
